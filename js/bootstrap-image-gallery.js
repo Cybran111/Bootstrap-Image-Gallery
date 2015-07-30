@@ -11,13 +11,16 @@
 
 /*global define, window */
 
-(function (factory) {
+var gallery = (function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
         define([
             'jquery',
             './blueimp-gallery'
         ], factory);
+    } else if ( typeof module === "object" && typeof module.exports === "object" ) {
+        // For CommonJS environment (browserify)
+        return factory(require('jquery'), require('blueimp-gallery'))
     } else {
         factory(
             window.jQuery,
@@ -86,3 +89,5 @@
     });
 
 }));
+
+module.exports = gallery;
